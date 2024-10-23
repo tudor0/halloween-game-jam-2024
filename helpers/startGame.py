@@ -12,7 +12,7 @@ moving_up = False
 moving_down = False
 
 
-def start_game(projectile_group, zombie_group, player, screen):
+def start_game(projectile_group, zombie, player, screen):
     global moving_left, moving_right, moving_up, moving_down
 
     while True:
@@ -23,8 +23,11 @@ def start_game(projectile_group, zombie_group, player, screen):
         # update and draw sprite groups
         projectile_group.update()
         projectile_group.draw(screen)
-        zombie_group.update()
-        zombie_group.draw(screen)
+
+        zombie.check_for_target()
+        zombie.debug_zombie()
+        zombie.update_animation()
+        zombie.draw()
 
         player.update_animation()
         player.draw()

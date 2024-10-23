@@ -43,7 +43,7 @@ class Zombie(Entity, pygame.sprite.Sprite):
         #if self.target.rect.x <= self.range_x or self.target.rect.y <= self.range_y:
            #self.move_towards_target()
 
-        if self.target.rect.x <= self.range_x:
+        if self.rect.x-self.aggro_range <= self.target.rect.x <= self.rect.x+self.aggro_range:
            self.move_towards_target()
 
     def debug_zombie(self):

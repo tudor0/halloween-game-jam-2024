@@ -21,10 +21,10 @@ projectile_group = pygame.sprite.Group()
 zombie_group = pygame.sprite.Group()
 
 # Declaring entities
-player = Player(640, 360, 3,4)
-zombie = Zombie(100, 100, 3, 3, player)
+player = Player(640, 360, 3,5)
+zombie = Zombie(100, 100, 3, 1, player)
 
 # Main loop
 if __name__ == '__main__':
-    menu = create_menu(projectile_group, zombie_group, player, screen)
+    menu = create_menu(projectile_group, zombie, player, screen)
     menu.mainloop(screen)
