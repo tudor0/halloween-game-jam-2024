@@ -10,7 +10,7 @@ screen = display.set_mode(WINDOW_SIZE)
 # Zombie class inheriting from Entity and pygame.sprite.Sprite
 class Zombie(Entity, pygame.sprite.Sprite):
     def __init__(self, x, y, scale, speed, target):
-        Entity.__init__(self, 'player', x, y, scale, speed)  # Use 'player' entity type
+        Entity.__init__(self, 'player', x, y, scale, speed)  # Use 'zombie' entity type
         pygame.sprite.Sprite.__init__(self)
         self.target = target  # The player or target entity
 

@@ -2,6 +2,7 @@ import pygame
 import os
 from constants.globals import WINDOW_SIZE, WINDOW_TITLE
 from constants.animations import ANIMATION_COOLDOWN
+
 # Window
 display = pygame.display
 display.set_caption(WINDOW_TITLE)
