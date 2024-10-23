@@ -6,8 +6,6 @@ class Player(Entity, pygame.sprite.Sprite):
     def __init__(self, x, y, scale, speed):
         Entity.__init__(self, 'player', x, y, scale, speed)  # Use 'player' entity type
         pygame.sprite.Sprite.__init__(self)
-        self.direction_x = 1
-        self.direction_y = 1
 
     def move(self, moving_up, moving_left, moving_down, moving_right):
         # reset movement variables
@@ -17,18 +15,17 @@ class Player(Entity, pygame.sprite.Sprite):
         # assign movement variables
         if moving_up:
             dy = -self.speed
-            self.direction_y = -1
+
         if moving_left:
             dx = -self.speed
             self.flip = True
-            self.direction_x = -1
+
         if moving_down:
             dy = self.speed
-            self.direction_y = 1
+
         if moving_right:
             dx = self.speed
             self.flip = False
-            self.direction_x = 1
 
         # update rect position with boundary checks
         new_x = self.rect.x + dx

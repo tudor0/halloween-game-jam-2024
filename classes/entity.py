@@ -2,6 +2,7 @@ import pygame
 import os
 from constants.globals import WINDOW_SIZE
 from constants.animations import ANIMATION_COOLDOWN
+from constants.animations import ANIMATION_TYPES
 
 # Window
 display = pygame.display
@@ -21,24 +22,20 @@ class Entity(pygame.sprite.Sprite):
         self.update_time = pygame.time.get_ticks()
 
         # Loading animations
-        # structure {animation:index}
-        animation_types = {
-            'walking_down': 0,
-            'walking_horizontally': 1,
-            'walking_up': 2
-                           }
-
-        for animation in animation_types:
-            # reset temp list of images
-            temp_list = []
-            # count number of files in the folder
-            num_of_frames = len(os.listdir(f'gfx/{self.entity_type}/{animation}'))
-            # add image lists to array
-            for i in range(num_of_frames):
-                img = pygame.image.load(f'gfx/{self.entity_type}/{animation}/{i}.png').convert_alpha()
-                img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
-                temp_list.append(img)
-            self.animation_list.append(temp_list)
+        try:
+            for animation in ANIMATION_TYPES:
+                # reset temp list of images
+                temp_list = []
+                # count number of files in the folder
+                num_of_frames = len(os.listdir(f'gfx/{self.entity_type}/{animation}'))
+                # add image lists to array
+                for i in range(num_of_frames):
+                    img = pygame.image.load(f'gfx/{self.entity_type}/{animation}/{i}.png').convert_alpha()
+                    img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
+                    temp_list.append(img)
+                self.animation_list.append(temp_list)
+        except:
+            print('Animation not defined')
 
         self.image = self.animation_list[self.action][self.frame_index]
         self.rect = self.image.get_rect()
