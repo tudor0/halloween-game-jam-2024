@@ -2,6 +2,7 @@ import pygame
 from pytmx.util_pygame import load_pygame
 
 from classes.zombie import Zombie
+from classes.player import Player
 from constants.globals import WINDOW_SIZE, WINDOW_TITLE
 from helpers.createMenu import create_menu
 

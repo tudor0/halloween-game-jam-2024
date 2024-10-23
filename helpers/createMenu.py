@@ -7,10 +7,10 @@ def create_menu(projectile_group, zombie_group, player, screen):
     custom_theme = pygame_menu.themes.THEME_DARK.copy()
     custom_theme.title_font = pygame_menu.font.FONT_FRANCHISE
     custom_theme.widget_font = pygame_menu.font.FONT_FRANCHISE
-    custom_theme.title_background_color = (255, 192, 203)  # Pink
+    custom_theme.title_background_color = (0, 0, 0)  # Pink
     custom_theme.widget_font_color = (255, 255, 255)  # White
     custom_theme.title_font_color = (255, 255, 255)  # White
-    custom_theme.widget_background_color = (255, 192, 203)  # Pink
+    custom_theme.widget_background_color = (0, 0, 0)  # Pink
 
     # Create the menu
     menu = pygame_menu.Menu('Main Menu', WINDOW_WIDTH, WINDOW_HEIGHT, theme=custom_theme)
