@@ -1,6 +1,6 @@
 import pygame
 from pytmx.util_pygame import load_pygame
-from constants.global_constants import WINDOW_WIDTH, WINDOW_SIZE, WINDOW_TITLE, WINDOW_HEIGHT, FRAME_RATE
+from constants.globals import WINDOW_WIDTH, WINDOW_SIZE, WINDOW_TITLE, WINDOW_HEIGHT, FRAME_RATE
 import os
 
 pygame.init()
