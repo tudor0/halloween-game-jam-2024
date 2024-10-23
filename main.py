@@ -4,7 +4,6 @@ from pytmx.util_pygame import load_pygame
 from classes.entity import Entity
 from classes.zombie import Zombie
 from constants.globals import WINDOW_WIDTH, WINDOW_SIZE, WINDOW_TITLE, WINDOW_HEIGHT, FRAME_RATE
-import os
 
 pygame.init()
 
