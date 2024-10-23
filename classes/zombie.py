@@ -1,16 +1,10 @@
 import pygame
 from classes.entity import Entity
-from constants.globals import WINDOW_SIZE, WINDOW_TITLE
-
-# Window
-display = pygame.display
-display.set_caption(WINDOW_TITLE)
-screen = display.set_mode(WINDOW_SIZE)
 
 # Zombie class inheriting from Entity and pygame.sprite.Sprite
 class Zombie(Entity, pygame.sprite.Sprite):
     def __init__(self, x, y, scale, speed, target):
-        Entity.__init__(self, 'player', x, y, scale, speed)  # Use 'zombie' entity type
+        Entity.__init__(self, 'zombie', x, y, scale, speed)  # Use 'player' entity type
         pygame.sprite.Sprite.__init__(self)
         self.target = target  # The player or target entity
 
@@ -47,6 +41,3 @@ class Zombie(Entity, pygame.sprite.Sprite):
                 self.update_action(0)  # walking down
             else:
                 self.update_action(2)  # walking up
-
-    def draw(self):
-        screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)

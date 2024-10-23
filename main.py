@@ -1,7 +1,6 @@
 import pygame
 from pytmx.util_pygame import load_pygame
 
-from classes.entity import Entity
 from classes.zombie import Zombie
 from constants.globals import WINDOW_SIZE, WINDOW_TITLE
 from helpers.createMenu import create_menu
@@ -21,9 +20,8 @@ projectile_group = pygame.sprite.Group()
 zombie_group = pygame.sprite.Group()
 
 # Declaring entities
-player = Entity('player', 640, 360, 3, 5)
-zombie = Zombie(100, 100, 3, 2, player)
-zombie_group.add(zombie)
+player = Player(640, 360, 3,4)
+zombie = Zombie(100, 100, 3, 3, player)
 
 # Main loop
 if __name__ == '__main__':
