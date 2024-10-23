@@ -2,6 +2,7 @@ import pygame
 from pytmx.util_pygame import load_pygame
 
 from classes.entity import Entity
+from classes.zombie import Zombie
 from constants.globals import WINDOW_WIDTH, WINDOW_SIZE, WINDOW_TITLE, WINDOW_HEIGHT, FRAME_RATE
 import os
 
@@ -34,9 +35,12 @@ tmxdata = load_pygame("map/test.tmx")
 
 # Create sprite groups
 projectile_group = pygame.sprite.Group()
+zombie_group = pygame.sprite.Group()
 
 # Declaring entities
 player = Entity('player', 640, 360, 3, 5)
+zombie = Zombie(100, 100, 3, 2, player)
+zombie_group.add(zombie)
 
 # GAME LOOP
 while True:
@@ -48,6 +52,8 @@ while True:
     # update and draw sprite groups
     projectile_group.update()
     projectile_group.draw(screen)
+    zombie_group.update()
+    zombie_group.draw(screen)
 
     player.update_animation()
     player.draw()
