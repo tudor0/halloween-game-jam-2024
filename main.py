@@ -38,8 +38,7 @@ zombie_group = pygame.sprite.Group()
 
 # Declaring entities
 player = Entity('player', 640, 360, 3, 5)
-zombie = Zombie(100, 100, 3, 2, player)
-zombie_group.add(zombie)
+zombie = Zombie(100, 100, 3, 3, player)
 
 # GAME LOOP
 while True:
@@ -51,8 +50,9 @@ while True:
     # update and draw sprite groups
     projectile_group.update()
     projectile_group.draw(screen)
-    zombie_group.update()
-    zombie_group.draw(screen)
+
+    zombie.update()
+    zombie.draw()
 
     player.update_animation()
     player.draw()
