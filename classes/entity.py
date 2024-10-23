@@ -67,6 +67,7 @@ class Entity(pygame.sprite.Sprite):
         new_x = self.rect.x + dx
         new_y = self.rect.y + dy
 
+        #Check for collision with window edges
         if new_x < 0:
             self.rect.x = 0
         elif new_x + self.rect.width > WINDOW_SIZE[0]:

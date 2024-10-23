@@ -52,7 +52,9 @@ while True:
     projectile_group.update()
     projectile_group.draw(screen)
 
-    zombie.update()
+    zombie.update_animation()
+    zombie.check_for_target()
+    zombie.debug_zombie()
     zombie.draw()
 
     player.update_animation()
