@@ -1,15 +1,9 @@
 import pygame
 from pytmx.util_pygame import load_pygame
+from constants.constants import WINDOW_WIDTH, WINDOW_SIZE, WINDOW_TITLE, WINDOW_HEIGHT, FRAME_RATE
 import os
 
 pygame.init()
-
-# Constants
-WINDOW_WIDTH = 1280
-WINDOW_HEIGHT = 720
-WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_HEIGHT)
-WINDOW_TITLE = "Dungeon game"
-FRAME_RATE = 60
 
 # Window
 display = pygame.display
