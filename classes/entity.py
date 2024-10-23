@@ -63,9 +63,23 @@ class Entity(pygame.sprite.Sprite):
             self.flip = False
             self.direction_x = 1
 
-        # update rect position
-        self.rect.x += dx
-        self.rect.y += dy
+        # update rect position with boundary checks
+        new_x = self.rect.x + dx
+        new_y = self.rect.y + dy
+
+        if new_x < 0:
+            self.rect.x = 0
+        elif new_x + self.rect.width > WINDOW_SIZE[0]:
+            self.rect.x = WINDOW_SIZE[0] - self.rect.width
+        else:
+            self.rect.x = new_x
+
+        if new_y < 0:
+            self.rect.y = 0
+        elif new_y + self.rect.height > WINDOW_SIZE[1]:
+            self.rect.y = WINDOW_SIZE[1] - self.rect.height
+        else:
+            self.rect.y = new_y
 
     def update_animation(self):
         # update image to current frame
