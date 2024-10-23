@@ -2,6 +2,7 @@ import pygame
 from pytmx.util_pygame import load_pygame
 
 from classes.entity import Entity
+from classes.player import Player
 from classes.zombie import Zombie
 from constants.globals import WINDOW_WIDTH, WINDOW_SIZE, WINDOW_TITLE, WINDOW_HEIGHT, FRAME_RATE
 
@@ -37,7 +38,7 @@ projectile_group = pygame.sprite.Group()
 zombie_group = pygame.sprite.Group()
 
 # Declaring entities
-player = Entity('player', 640, 360, 3, 5)
+player = Player(640, 360, 3,4)
 zombie = Zombie(100, 100, 3, 3, player)
 
 # GAME LOOP

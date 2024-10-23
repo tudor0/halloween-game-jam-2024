@@ -1,11 +1,5 @@
 import pygame
 from classes.entity import Entity
-from constants.globals import WINDOW_SIZE, WINDOW_TITLE
-
-# Window
-display = pygame.display
-display.set_caption(WINDOW_TITLE)
-screen = display.set_mode(WINDOW_SIZE)
 
 # Zombie class inheriting from Entity and pygame.sprite.Sprite
 class Zombie(Entity, pygame.sprite.Sprite):
