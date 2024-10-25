@@ -13,9 +13,6 @@ display = pygame.display
 display.set_caption(WINDOW_TITLE)
 screen = display.set_mode(WINDOW_SIZE)
 
-# TMX Map data
-tmxdata = load_pygame("map/test.tmx")
-
 # Create sprite groups
 projectile_group = pygame.sprite.Group()
 zombie_group = pygame.sprite.Group()

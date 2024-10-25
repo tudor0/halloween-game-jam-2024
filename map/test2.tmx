@@ -4,7 +4,7 @@
  <tileset firstgid="626" source="free_dungeon_items.tsx"/>
  <layer id="1" name="Floor Layer" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJyTZ2BgkB/FdMGsQHyHkYHhLhTfA2I2BtpgdiR75YD4K9Cub1D8nZF2flRAs5ePiYGBH4oFmOhnL73idNTewW+vL1p6NwXyzYjMA1ZAbE1F//oRaTcHEHNS0V6Qn/2JsHcoxu+ovUPLXnMgtqATtqSjH7FhAED5UCc=
+   eJyTZ2BgkB/FdMGsQMxGJ8yOZK8cHf2oMGrvqL2DzF5fRlS+KZBvxkicXisgtqaif/2ItJsDiDmpaC/Iz/5E2DsQ8TsHiOeO2jti7DUHYgs6YHR7BwIDAK0aT0k=
   </data>
  </layer>
  <layer id="5" name="Walls Layer" width="30" height="20">
@@ -12,7 +12,7 @@
    <property name="collidable" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzLYGBgYARiJiDeAMQboWxyMTMQs0DNRGYjy2cCcSMQSwGxNBCfBOJTUDa5WAaIZaFmIrOR5Zug9hoDsQkQPwLix1A2udgUiM2gZiKzkeVh9lIb+ONgwwCt7CUERu2lD0gdIHulBshe4wGyl2GE2eszQPaOtPw7ai/97J0FxL50xrOBGAAOJig4
+   eJztk0EOAUEQRXuGNbYGl9C4hBGnkHAMjsElOAZnwIIzYOtJapLa0ElPunvjJy/5SSX1ku7U0hiTQQ57OEj3pQFN2am7nq9gDQX04Agn6b70YSA7ddfzjXgtjOAGd+m+jGEiO3XX88r7yZnHuAjXzNTK/Euvor0PXE/hVdPriva2+PS20MnjeWMmlXeRyFsk8tpEXhPKyx1mjlsM4e3iLH54y0TeUHf098bxDnHaBN4pztLh3cIsMjt4A4GtMdw=
   </data>
  </layer>
  <layer id="3" name="Furniture Layer" width="30" height="20">
