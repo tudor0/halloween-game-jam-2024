@@ -25,7 +25,7 @@ def start_game(projectile_group, zombie, player, screen):
         projectile_group.update()
         projectile_group.draw(screen)
 
-        zombie.act()
+        zombie.execute_behavior()
         zombie.update_animation()
         zombie.debug_zombie()
         zombie.draw()
