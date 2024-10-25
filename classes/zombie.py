@@ -17,22 +17,30 @@ class Zombie(Entity, pygame.sprite.Sprite):
         self.y = y
         self.aggro_range = 200
         self.wandering_range = 150
-        self.choose_random_point()
+        self.wandering_minimum = 100
         self.dx = 0
         self.dy = 0
-        self.random_x = 0
-        self.random_y = 0
+        self.random_x = self.x
+        self.random_y = self.y
         self.aggro_speed = speed
         self.wandering_speed = self.aggro_speed*0.65
-        self.case = 'wander'
+        self.case = 'idle'
         self.idle_time = 0
         self.wait_duration = randint(1000, 2500)
+        self.last_known_player_x = self.x
+        self.last_known_player_y = self.y
 
     def move(self):
         #Define target point: player or random
         if pygame.math.Vector2(self.target.rect.x, self.target.rect.y).distance_to((self.rect.x, self.rect.y)) <= self.aggro_range:
             target_x = self.target.rect.x
             target_y = self.target.rect.y
+
+            self.last_known_player_x = target_x
+            self.last_known_player_y = target_y
+            self.random_x = target_x
+            self.random_y = target_y
+
             self.case = 'aggro'
         else:
             target_x = self.random_x
@@ -68,9 +76,9 @@ class Zombie(Entity, pygame.sprite.Sprite):
             self.idle_time = 0
             self.wait_duration = randint(1000, 2500)
 
+        # Target enters aggro range while waiting
         if pygame.math.Vector2(self.target.rect.x, self.target.rect.y).distance_to((self.rect.x, self.rect.y)) <= self.aggro_range:
             self.case = 'aggro'
-            self.choose_random_point()
             self.idle_time = 0
             self.wait_duration = randint(1000, 2500)
 
@@ -96,13 +104,20 @@ class Zombie(Entity, pygame.sprite.Sprite):
                 self.update_action(ANIMATION_TYPES['walking_up'])  # walking up
 
     def choose_random_point(self):
-        self.random_x = choice([-1, 1])*randint(self.x, self.x + self.wandering_range)
-        self.random_y = choice([-1, 1])*randint(self.y, self.y + self.wandering_range)
+        while True:
+            self.random_x = choice([-1, 1]) * randint(self.last_known_player_x, self.last_known_player_x + self.wandering_range)
+            self.random_y = choice([-1, 1]) * randint(self.last_known_player_y, self.last_known_player_y + self.wandering_range)
 
-        if self.random_x < 0 or self.random_x > WINDOW_WIDTH:
-            self.random_x = 0
-        if self.random_y < 0 or self.random_y > WINDOW_HEIGHT:
-            self.random_y = 0
+            # Stops the zombie from choosing points out of bounds
+            if self.random_x < 0 or self.random_x > WINDOW_WIDTH:
+                self.random_x = self.x
+            if self.random_y < 0 or self.random_y > WINDOW_HEIGHT:
+                self.random_y = self.y
+
+            distance = pygame.math.Vector2(self.random_x, self.random_y).distance_to((self.rect.x, self.rect.y))
+
+            if distance >= self.wandering_minimum:
+                break
 
     def act(self):
         match self.case:
