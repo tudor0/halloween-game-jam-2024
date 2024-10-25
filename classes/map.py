@@ -10,6 +10,24 @@ class Map:
         self.tilewidth = self.tmx_data.tilewidth
         self.tileheight = self.tmx_data.tileheight
 
+        self.collidables = self.load_collidables()
+
+    def load_collidables(self):
+        collidables = []
+        for layer in self.tmx_data.visible_layers:
+            if isinstance(layer, pytmx.TiledTileLayer):
+                for x,y,gid in layer:
+                    tile = self.tmx_data.get_tile_properties_by_gid(gid)
+                    if tile and tile.get("collidables"):
+                        rect = pygame.Rect(
+                            x * self.tilewidth,
+                            y * self.tileheight,
+                            self.tilewidth,
+                            self.tileheight
+                        )
+                        collidables.append(rect)
+        return collidables
+
     def render(self, surface):
         screen_width, screen_height = surface.get_size()
         map_width, map_height = self.get_size()
@@ -35,8 +53,8 @@ class Map:
         # Returns the pixel size of the map.
         return self.width * self.tilewidth, self.height * self.tileheight
 
-    """def get_tile_properties(self, x, y, layer):
-        # Retrieves properties for a tile at the given (x, y) position in the specified layer.
-        tile = self.tmx_data.get_tile_properties_by_layer(layer, x, y)
-        return tile
-    """
+    def check_collision(self, rect):
+        for collidable in self.collidables:
+            if rect.colliderect(collidable):
+                return True
+        return False

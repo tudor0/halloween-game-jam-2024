@@ -8,11 +8,17 @@
   </data>
  </layer>
  <layer id="5" name="Walls Layer" width="30" height="20">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJztk0EOAUEQRXuGNbYGl9C4hBGnkHAMjsElOAZnwIIzYOtJapLa0ElPunvjJy/5SSX1ku7U0hiTQQ57OEj3pQFN2am7nq9gDQX04Agn6b70YSA7ddfzjXgtjOAGd+m+jGEiO3XX88r7yZnHuAjXzNTK/Euvor0PXE/hVdPriva2+PS20MnjeWMmlXeRyFsk8tpEXhPKyx1mjlsM4e3iLH54y0TeUHf098bxDnHaBN4pztLh3cIsMjt4A4GtMdw=
   </data>
  </layer>
  <layer id="3" name="Furniture Layer" width="30" height="20">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJxjYBgFILCImYFBCIiFgXgJEC/FwhcAYkFmiFp0UMQEwaSC3UCztIFYB4j3AvE+LHxNINZihqhFB91MEEwOcAGa58qMm+8EZDtjsZNSEAs0M44ZNz8ayI6hgb0jFawApo+VZKYRSsBBoJ2HBsDeW0A7bw+AvaNgFIyCUYAMAL27FHY=
   </data>

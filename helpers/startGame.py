@@ -24,18 +24,6 @@ def start_game(projectile_group, zombie, player, screen):
 
         draw_background(screen)
 
-        # update and draw sprite groups
-        projectile_group.update()
-        projectile_group.draw(screen)
-
-        zombie.check_for_target()
-        zombie.debug_zombie()
-        zombie.update_animation()
-        zombie.draw()
-
-        player.update_animation()
-        player.draw()
-
         # update animation
         if player.alive:
             if moving_down:
@@ -92,6 +80,18 @@ def start_game(projectile_group, zombie, player, screen):
         # Render the current map
         screen.fill((0, 0, 0))  # Clear the screen
         current_map.render(screen)
+
+        # update and draw sprite groups
+        projectile_group.update()
+        projectile_group.draw(screen)
+
+        zombie.check_for_target()
+        zombie.debug_zombie()
+        zombie.update_animation()
+        zombie.draw()
+
+        player.update_animation()
+        player.draw()
 
         pygame.display.flip()
         pygame.display.update()
