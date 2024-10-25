@@ -3,6 +3,7 @@ import pygame
 from classes.entity import display
 from helpers.drawBackground import draw_background
 from constants.globals import FRAME_RATE
+from constants.animations import ANIMATION_TYPES
 from classes.map import Map
 
 # Clock
@@ -24,14 +25,16 @@ def start_game(projectile_group, zombie, player, screen):
 
         draw_background(screen)
 
+
+
         # update animation
         if player.alive:
             if moving_down:
-                player.update_action(0)
+                player.update_action(ANIMATION_TYPES['walking_down'])
             elif moving_right or moving_left:
-                player.update_action(1)
+                player.update_action(ANIMATION_TYPES['walking_horizontally'])
             elif moving_up:
-                player.update_action(2)
+                player.update_action(ANIMATION_TYPES['walking_up'])
             else:
                 player.update_action('idle')
             player.move(moving_up, moving_left, moving_down, moving_right)
@@ -85,9 +88,9 @@ def start_game(projectile_group, zombie, player, screen):
         projectile_group.update()
         projectile_group.draw(screen)
 
-        zombie.check_for_target()
-        zombie.debug_zombie()
+        zombie.execute_behavior()
         zombie.update_animation()
+        zombie.debug_zombie()
         zombie.draw()
 
         player.update_animation()

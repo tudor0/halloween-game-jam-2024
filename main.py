@@ -18,8 +18,8 @@ projectile_group = pygame.sprite.Group()
 zombie_group = pygame.sprite.Group()
 
 # Declaring entities
-player = Player(640, 360, 3,5)
-zombie = Zombie(100, 100, 3, 1, player)
+player = Player(640, 360, 3,4)
+zombie = Zombie(1000, 600, 3, 3, player)
 
 # Main loop
 if __name__ == '__main__':
