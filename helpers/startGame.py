@@ -4,6 +4,7 @@ from classes.entity import display
 from helpers.drawBackground import draw_background
 from constants.globals import FRAME_RATE
 from classes.map import Map
+from classes.sound import Music, Sound
 
 # Clock
 CLOCK = pygame.time.Clock()
@@ -18,6 +19,9 @@ moving_down = False
 def start_game(projectile_group, zombie, player, screen):
     global moving_left, moving_right, moving_up, moving_down
     current_map = Map("map/test.tmx")
+
+    background_music = Music("sfx/bgm/DMX_X_Gon.wav")
+    background_music.play()
 
     while True:
         CLOCK.tick(FRAME_RATE)
@@ -64,11 +68,16 @@ def start_game(projectile_group, zombie, player, screen):
                     moving_down = True
                 if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     moving_right = True
+                if event.key == pygame.K_p:
+                    background_music.pause()
+                elif event.key == pygame.K_u:
+                    background_music.unpause()
                 if event.key == pygame.K_1:  # Press '1' to switch to map1
                     current_map = Map("map/test.tmx")
                 if event.key == pygame.K_2:  # Press '2' to switch to map2
                     current_map = Map("map/test2.tmx")
                 if event.key == pygame.K_ESCAPE:
+                    background_music.stop()
                     pygame.quit()
                     exit()
             # mouse presses
@@ -95,3 +104,4 @@ def start_game(projectile_group, zombie, player, screen):
 
         pygame.display.flip()
         pygame.display.update()
+

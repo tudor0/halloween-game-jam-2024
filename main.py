@@ -7,6 +7,7 @@ from constants.globals import WINDOW_SIZE, WINDOW_TITLE
 from helpers.createMenu import create_menu
 
 pygame.init()
+pygame.mixer.init()
 
 # Window
 display = pygame.display
