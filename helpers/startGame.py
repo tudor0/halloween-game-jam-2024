@@ -1,6 +1,9 @@
 import pygame
+
+from classes.entity import display
 from helpers.drawBackground import draw_background
 from constants.globals import FRAME_RATE
+from classes.map import Map
 
 # Clock
 CLOCK = pygame.time.Clock()
@@ -14,6 +17,7 @@ moving_down = False
 
 def start_game(projectile_group, zombie, player, screen):
     global moving_left, moving_right, moving_up, moving_down
+    current_map = Map("map/test.tmx")
 
     while True:
         CLOCK.tick(FRAME_RATE)
@@ -60,6 +64,10 @@ def start_game(projectile_group, zombie, player, screen):
                     moving_down = True
                 if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     moving_right = True
+                if event.key == pygame.K_1:  # Press '1' to switch to map1
+                    current_map = Map("map/test.tmx")
+                if event.key == pygame.K_2:  # Press '2' to switch to map2
+                    current_map = Map("map/test2.tmx")
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     exit()
@@ -81,4 +89,9 @@ def start_game(projectile_group, zombie, player, screen):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:  # left mouse button
                 shoot = False
 
+        # Render the current map
+        screen.fill((0, 0, 0))  # Clear the screen
+        current_map.render(screen)
+
+        pygame.display.flip()
         pygame.display.update()
