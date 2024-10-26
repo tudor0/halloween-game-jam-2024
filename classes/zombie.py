@@ -27,14 +27,18 @@ class Zombie(Entity, pygame.sprite.Sprite):
 
         # Initial behaviour
         self.aggro_range = self.unaware_aggro_range
-        self.behavior = 'idle'
+        self.behavior = 'wander'
 
         self.idle_time = 0
         self.delta_speed = [0, 0]
-        self.last_known_player_location = [self.rect.x, self.rect.y]
-        self.target_points = [self.rect.x, self.rect.y]
-        self.random_points = [self.rect.x, self.rect.y]
         self.player_location = [self.target.rect.x, self.target.rect.y]
+
+        self.target_points = [self.rect.x, self.rect.y]
+        self.last_known_player_location = [self.rect.x, self.rect.y]
+        self.random_points = [
+            randint(self.last_known_player_location[0], self.last_known_player_location[0] + self.wandering_range),
+            randint(self.last_known_player_location[1], self.last_known_player_location[1] + self.wandering_range),
+        ]
 
     def execute_behavior(self):
         match self.behavior:
@@ -54,21 +58,43 @@ class Zombie(Entity, pygame.sprite.Sprite):
                 self.wait()
 
     def move(self):
+        # Check if the zombie is in idle mode after reaching a random point
+        if self.behavior == 'idle':
+            # Check if the wait duration has elapsed
+            if pygame.time.get_ticks() - self.idle_time >= self.wait_duration:
+                # Exit idle mode and choose a new random point to wander to
+                self.behavior = 'wander'
+                self.choose_random_point()
+                self.target_points = self.random_points
+                self.idle_time = 0  # Reset idle time for the next wait
+                self.wait_duration = randint(self.minimum_wait_time, self.maximum_wait_time)
+            else:
+                return  # Stay idle and do nothing
+
+        # If not in idle mode, proceed to choose target and move
         self.choose_target()
+
         # Calculate direction towards the target
         for i in range(len(self.delta_speed)):
             self.delta_speed[i] = self.target_points[i] - self.rect.center[i]
 
-        distance = sqrt(pow(self.delta_speed[0],2) + pow(self.delta_speed[1],2))
+        distance = sqrt(pow(self.delta_speed[0], 2) + pow(self.delta_speed[1], 2))
 
         for i in range(len(self.delta_speed)):
             if distance != 0:
-                self.delta_speed[i] = self.delta_speed[i]/distance
+                self.delta_speed[i] = self.delta_speed[i] / distance
 
+        # Move towards the target
         self.rect.x += self.delta_speed[0] * self.speed
         self.rect.y += self.delta_speed[1] * self.speed
 
-        #Update_sprite
+        # Check if zombie reached target and switch to idle if wandering
+        if self.behavior == 'wander' and pygame.math.Vector2(self.rect.center).distance_to(
+                self.target_points) < self.proximity_range:
+            self.behavior = 'idle'
+            self.idle_time = pygame.time.get_ticks()  # Record the time zombie reached the point
+
+        # Update sprite
         self.update_direction()
 
     def choose_target(self):
@@ -81,9 +107,11 @@ class Zombie(Entity, pygame.sprite.Sprite):
         # Aggro behaviour
         if target_distance_from_zombie <= self.aggro_range:
             self.behavior = 'aggro'
-            self.target_points = [self.target.rect.x, self.target.rect.y]
+            self.target_points = self.player_location
+
             for i in range(len(self.last_known_player_location)):
                 self.last_known_player_location[i] = self.target_points[i]
+
             for i in range(len(self.random_points)):
                 self.random_points[i] = self.target_points[i]
 
@@ -148,4 +176,14 @@ class Zombie(Entity, pygame.sprite.Sprite):
     def debug_zombie(self):
         pygame.draw.circle(screen, (255, 100, 0), self.rect.center, self.aggro_range) #Aggro range
         pygame.draw.circle(screen, (255, 0, 0), self.random_points, self.proximity_range) #Random chosen point
+        print("pygame.time.get_ticks() - self.idle_time")
+        print(pygame.time.get_ticks() - self.idle_time)
+        print("self.wait_duration")
+        print(self.wait_duration)
+        print("self.idle_time")
+        print(self.idle_time)
+        print('self.random_points')
+        print(self.random_points)
+        print("self.delta_speed")
         print(self.delta_speed)
+        print("---------------------------")
